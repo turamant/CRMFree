@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<h3>Вы точно хотите удалить текущий {{ lead }}? </h3>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+    <input type="submit" name="cancel" value="Cancel" />
+</form>
+</body>
+</html>

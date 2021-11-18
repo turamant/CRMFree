@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+<h3>Lead: </h3>
+<p>Имя: {{ lead.first_name }}</p>
+<p>Фамилия: {{ lead.last_name }}</p>
+<p>Возраст: {{ lead.age }}</p>
+<p>Агент: {{ lead.agent }}</p>
+
+<a href="{% url 'update' lead.id %}">Update current lead</a>
+<a href="{% url 'delete' lead.id %}">Delete current lead</a>
+</body>
+</html>
