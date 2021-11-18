@@ -1,27 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Leads</title>
-    <style>
-        .lead {
-            background-color: green;
-            color: red;
-        }
-    </style>
+{% extends "base.html" %}
 
-</head>
-<body>
-<header>
-    <h3>
-        <a href="{% url 'create' %}">Create new lead</a>
-    </h3>
-</header>
+{% block content %}
+<h3>
+        <a href="{% url 'leads:create' %}">Create new lead</a>
+</h3>
 <h3>Leads</h3>
 {% for lead in leads %}
 <div class="lead">
-<p><a href="{% url 'detail' lead.id %}">{{ lead.first_name }}</a></p>
+<p><a href="{% url 'leads:detail' lead.id %}">{{ lead.first_name }}</a></p>
 </div>
 {% endfor%}
-</body>
-</html>
+
+{% endblock %}

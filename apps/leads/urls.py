@@ -2,6 +2,9 @@ from django.urls import path
 
 from apps.leads.views import lead_list, lead_detail, create_lead, update_lead, delete_lead
 
+
+app_name = 'leads'
+
 urlpatterns = [
     path('', lead_list, name='list'),
     path('<int:id>/', lead_detail, name='detail'),

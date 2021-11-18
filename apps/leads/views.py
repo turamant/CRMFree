@@ -24,7 +24,7 @@ def create_lead(request):
             print(form.cleaned_data['age'])
             form.save()
             print("Lead created!")
-            return redirect('list')
+            return redirect('leads:list')
     return render(request, 'leads/create.html', {'form': form})
 
 def update_lead(request, id):
@@ -34,16 +34,16 @@ def update_lead(request, id):
         form = LeadModelForm(request.POST, instance=lead)
         if form.is_valid():
             form.save()
-            return redirect('list')
+            return redirect('leads:list')
     return render(request, 'leads/update.html', {'form': form, 'lead': lead})
 
 def delete_lead(request, id):
     lead = Lead.objects.get(id=id)
     if request.method == 'POST':
         if "cancel" in request.POST:
-            return redirect('list')
+            return redirect('leads:list')
         lead.delete()
-        return redirect('list')
+        return redirect('leads:list')
     return render(request, 'leads/delete.html', {'lead': lead})
 
 def XXXupdate_lead(request, id):
@@ -68,7 +68,7 @@ def XXXupdate_lead(request, id):
             lead.save()
 
             print("Lead created!")
-            return redirect('list')
+            return redirect('leads:list')
     return render(request, 'leads/update.html', {'form': form, 'lead': lead})
 
 
@@ -94,5 +94,5 @@ def XXXcreate_lead(request):
                 agent=agent,
             )
             print("Lead created!")
-            return redirect('list')
+            return redirect('leads:list')
     return render(request, 'leads/create.html', {'form': form})

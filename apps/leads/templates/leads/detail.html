@@ -11,7 +11,7 @@
 <p>Возраст: {{ lead.age }}</p>
 <p>Агент: {{ lead.agent }}</p>
 
-<a href="{% url 'update' lead.id %}">Update current lead</a>
-<a href="{% url 'delete' lead.id %}">Delete current lead</a>
+<a href="{% url 'leads:update' lead.id %}">Update current lead</a>
+<a href="{% url 'leads:delete' lead.id %}">Delete current lead</a>
 </body>
 </html>
