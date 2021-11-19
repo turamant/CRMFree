@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Delete</title>
-</head>
-<body>
-<h3>Вы точно хотите удалить текущий {{ lead }}? </h3>
-<form method="post">
-    {% csrf_token %}
-    <input type="submit" value="Delete">
-    <input type="submit" name="cancel" value="Cancel" />
-</form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-lg mx-auto">
+    <div class="py-5 border-b border-gray-200">
+        <a class="hover:text-blue-500" href="{% url 'leads:list' %}">Go back to leads</a>
+    </div>
+    <h1 class="text-3xl text-gray-800">Are you sure you want to delete this lead?</h1>
+    <form method="post" class="mt-5">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">Submit</button>
+        <button type="submit" name="cancel" class="w-full text-white bg-red-500 hover:bg-yellow-600 px-3 py-2 rounded-md">Cancel</button>
+    </form>
+</div>
+{% endblock content %}
+
