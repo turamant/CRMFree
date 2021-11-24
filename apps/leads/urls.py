@@ -6,7 +6,7 @@ from apps.leads.views import lead_list, lead_detail, create_lead, update_lead, d
 app_name = 'leads'
 
 urlpatterns = [
-    path('', lead_list, name='list'),
+    path('', lead_list, name='lead_list'),
     #path('<int:pk>/', lead_detail, name='detail'),
     path('<int:pk>', LeadDetailView.as_view(), name='detail'),
     path('<int:pk>/update/', update_lead, name='update'),

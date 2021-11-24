@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.core.mail import send_mail
 
@@ -26,7 +27,7 @@ def landing_page(request):
 
 ############################################
 
-class LeadListView(generic.ListView):
+class LeadListView(LoginRequiredMixin, generic.ListView):
     queryset = Lead.objects.all()
     template_name = 'leads/list.html'
     context_object_name = 'leads'
@@ -37,7 +38,7 @@ def lead_list(request):
 
 ###############################################################
 
-class LeadDetailView(generic.DetailView):
+class LeadDetailView(LoginRequiredMixin, generic.DetailView):
     queryset = Lead.objects.all()
     template_name = 'leads/detail.html'
     context_object_name = 'lead'
@@ -48,12 +49,12 @@ def lead_detail(request, pk):
 
 ##############################################################
 
-class LeadCreateView(generic.CreateView):
+class LeadCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = 'leads/create.html'
     form_class = LeadModelForm
 
     def get_success_url(self):
-        return reverse('leads:list')
+        return reverse('leads:lead_list')
     
     def form_valid(self, form):
         #TODO send email
@@ -82,7 +83,7 @@ def create_lead(request):
 
 #############################################################
 
-class LeadUpdateView(generic.UpdateView):
+class LeadUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = 'leads/update.html'
     queryset = Lead.objects.all()
     form_class = LeadModelForm
@@ -102,7 +103,7 @@ def update_lead(request, pk):
 
 #############################################################################
 
-class LeadDeleteView(generic.DetailView):
+class LeadDeleteView(LoginRequiredMixin, generic.DetailView):
     template_name = 'leads/delete.html'
     queryset = Lead.objects.all()
 
